@@ -12,6 +12,8 @@ import {MoviesAppRouting} from './configs/MoviesAppRouting.config';
 
 import {en_GB} from './translations/en_GB';
 
+import {MOVIES_REST_API_MODULE_CONFIG} from '../MoviesRESTApi/models/MoviesRESTApiEnvironmentConfiguration.model';
+
 import {tsToTranslations} from './functions/ts-to-translations.function';
 
 import {AppRootComponent} from './components/AppRoot/AppRoot.component';
@@ -33,10 +35,14 @@ import {AppRootComponent} from './components/AppRoot/AppRoot.component';
 
         MoviesAppRouting.declarations,
     ],
+    providers: [
+        MoviesAppRouting.providers,
+        environment.modules.MoviesRESTApi.angularProviders,
+
+        { provide: MOVIES_REST_API_MODULE_CONFIG, useValue: environment.modules.MoviesRESTApi },
+    ],
     bootstrap: [
         AppRootComponent,
-
-        MoviesAppRouting.providers,
     ],
 })
 export class MoviesAppModule
