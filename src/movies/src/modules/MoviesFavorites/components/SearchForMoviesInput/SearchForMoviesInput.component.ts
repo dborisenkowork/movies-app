@@ -1,5 +1,6 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
 import {FormControl} from '@angular/forms';
+import {MatAutocompleteSelectedEvent} from '@angular/material';
 
 import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';
@@ -11,6 +12,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/throttleTime';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/merge';
 
 import {MovieFavoriteMetadata} from '../../models/MovieFavorite.model';
 
@@ -18,7 +21,6 @@ import {
     OMDBApiSearchItem, OMDBApiSearchResponse200,
     OMDBApiService,
 } from '../../../MoviesRESTApi/services/OMDBApi.service';
-import {MatAutocompleteSelectedEvent} from '@angular/material';
 
 interface State
 {
@@ -32,7 +34,7 @@ interface State
         './SearchForMoviesInput.component.less',
     ],
 })
-export class SearchForMoviesInputComponent implements OnInit, OnDestroy
+export class SearchForMoviesInputComponent implements OnChanges, OnInit, OnDestroy
 {
     @Input() minLengthTrigger: number = 3;
     @Input() maxOptions: number = 10;
@@ -41,6 +43,7 @@ export class SearchForMoviesInputComponent implements OnInit, OnDestroy
     @Output('next') nextEvent: EventEmitter<MovieFavoriteMetadata> = new EventEmitter<MovieFavoriteMetadata>();
 
     private ngOnDestroy$: Subject<void> = new Subject<void>();
+    private ngOnChanges$: Subject<void> = new Subject<void>();
 
     public state: State = {
         options: [],
@@ -52,12 +55,30 @@ export class SearchForMoviesInputComponent implements OnInit, OnDestroy
         private api: OMDBApiService,
     ) {}
 
+    ngOnChanges(changes: SimpleChanges): void {
+        this.ngOnChanges$.next(undefined);
+        this.setupTextInput();
+    }
 
     ngOnInit(): void {
+        this.setupTextInput();
+    }
+
+    ngOnDestroy(): void {
+        this.ngOnDestroy$.next(undefined);
+    }
+
+    onOptionSelected($event: MatAutocompleteSelectedEvent): void {
+        this.textInput.setValue('');
+        this.nextEvent.emit($event.option.value);
+    }
+
+    private setupTextInput(): void {
         this.textInput.valueChanges
-            .takeUntil(this.ngOnDestroy$)
+            .takeUntil(this.ngOnChanges$.merge(this.ngOnDestroy$))
             .distinctUntilChanged()
             .debounceTime(this.debounceTime)
+            .filter(v => v && v.length >= this.minLengthTrigger)
             .switchMap(value => {
                 return this.api.search({ filmTitle: value })
                     .catch(() => {
@@ -77,14 +98,5 @@ export class SearchForMoviesInputComponent implements OnInit, OnDestroy
                     };
                 }
             });
-    }
-
-    ngOnDestroy(): void {
-        this.ngOnDestroy$.next(undefined);
-    }
-
-    onOptionSelected($event: MatAutocompleteSelectedEvent): void {
-        this.textInput.setValue('');
-        this.nextEvent.emit($event.option.value);
     }
 }
