@@ -3,6 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 import {TranslateModule, TranslateService} from '@ngx-translate/core';
 
@@ -20,6 +21,7 @@ import {AppRootComponent} from './components/AppRoot/AppRoot.component';
         CommonModule,
         BrowserModule,
         BrowserAnimationsModule,
+        FlexLayoutModule,
 
         TranslateModule.forRoot(),
         RouterModule.forRoot(MoviesAppRouting.routes, {
