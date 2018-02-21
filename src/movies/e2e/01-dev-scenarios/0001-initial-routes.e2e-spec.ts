@@ -27,10 +27,14 @@ describe('01-dev-scenarios/0001-initial-routes.e2e-spec.ts', () => {
         expect(element(by.css('[data-e2e-element="45fa"]')).isPresent()).toBeTruthy();
     });
 
-    it('can show View Favorite route', () => {
+    it('can show View Favorite route but will be redirected to Favorite List', () => {
         browser.get('/favorites/view');
-        EC.urlIs('/favorites/view');
-        expect(element(by.css('[data-e2e-element="3а55"]')).isPresent()).toBeTruthy();
+        EC.urlIs('/favorites/list');
+    });
+
+    it('can show View Favorite route but will be redirected to Favorite List (on unknown id)', () => {
+        browser.get('/favorites/view/unknown-id');
+        EC.urlIs('/favorites/list');
     });
 
     it('will redirect to 404 in case of unknown path (Favorites)', () => {
