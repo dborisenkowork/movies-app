@@ -15,6 +15,9 @@ import {SearchForMoviesFormComponent} from './forms/SearchForMoviesForm/SearchFo
 
 import {SearchForMoviesInputComponent} from './components/SearchForMoviesInput/SearchForMoviesInput.component';
 import {MovieFavoritesListComponent} from './components/MovieFavoritesList/MovieFavoritesList.component';
+import {MovieFavoriteDetailsComponent} from './components/MovieFavoriteDetails/MovieFavoriteDetails.component';
+
+import {MovieFavoriteDetailsContainerComponent} from './containers/MovieFavoriteDetailsContainer.component';
 
 import {MoviesFavoritesStore} from './store/MoviesFavoritesStore.service';
 import {MoviesFavoritesService} from './services/MoviesFavoritesService';
@@ -42,11 +45,16 @@ import {MoviesFavoritesService} from './services/MoviesFavoritesService';
     declarations: [
         SearchForMoviesFormComponent,
 
+        MovieFavoriteDetailsContainerComponent,
+
         SearchForMoviesInputComponent,
         MovieFavoritesListComponent,
+        MovieFavoriteDetailsComponent,
     ],
     exports: [
         SearchForMoviesFormComponent,
+        MovieFavoriteDetailsComponent,
+        MovieFavoriteDetailsContainerComponent,
     ],
     providers: [
         MoviesFavoritesStore,

@@ -16,6 +16,12 @@ export const en_GB: any = {
                     'Remove': 'Delete',
                 },
             },
+            'MovieFavoriteDetails': {
+                'Controls': {
+                    'GoList': 'Back to list',
+                    'Remove': 'Delete',
+                },
+            },
         },
     },
 };

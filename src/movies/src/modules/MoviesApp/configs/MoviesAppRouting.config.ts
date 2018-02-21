@@ -39,7 +39,7 @@ export const MoviesAppRouting: {
                     component: ListFavoritesRouteComponent,
                 },
                 {
-                    path: 'view',
+                    path: 'view/:id',
                     pathMatch: 'full',
                     component: ViewFavoriteRouteComponent,
                 },

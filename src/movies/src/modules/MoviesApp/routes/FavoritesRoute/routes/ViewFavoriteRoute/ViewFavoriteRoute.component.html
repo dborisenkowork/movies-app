@@ -1,1 +1,10 @@
-<div class="route route-not0found-route" data-e2e-element="3а55"></div>
+<div class="route route-not0found-route" data-e2e-element="3а55">
+    <movies-favorites-details-container #getById [id]="id" (not-found)="notFound()" (go-list)="goList()">
+        <movies-favorite-details *ngIf="getById.state.favorite"
+             [favorite]="getById.state.favorite"
+             (go-list)="getById.onGoList()"
+             (remove)="getById.onRemove($event)"
+        ></movies-favorite-details
+        >
+    </movies-favorites-details-container>
+</div>

@@ -5,7 +5,7 @@ import {generateSID} from '../functions/generate-sid.function';
 
 import {MoviesFavoritesState, MoviesFavoritesStore} from '../store/MoviesFavoritesStore.service';
 
-export type GetByIdResult = { found: true; movie: MovieFavorite } | { found: false };
+export type GetByIdResult = { found: true; favorite: MovieFavorite } | { found: false };
 
 @Injectable()
 export class MoviesFavoritesService
@@ -50,7 +50,7 @@ export class MoviesFavoritesService
         } else if (result.length === 1) {
             return {
                 found: true,
-                movie: result[0],
+                favorite: result[0],
             };
         } else {
             throw new Error(`State error: duplicates found for ${movieId}!`);
