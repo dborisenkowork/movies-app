@@ -1,0 +1,31 @@
+<mat-list class="mat-list">
+    <mat-list-item class="element" *ngFor="let favorite of props.favorites">
+        <div class="full-width" fxLayout="row" fxLayoutGap="15px">
+            <div fxFlex="1 1 100%">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="{{ 'MoviesFavorites.components.MovieFavoritesList.Fields.Title' | translate }}" readonly [value]="favorite.metadata.Title">
+                </mat-form-field>
+            </div>
+            <div fxFlex="1 1 200px">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="{{ 'MoviesFavorites.components.MovieFavoritesList.Fields.Year' | translate }}" readonly [value]="favorite.metadata.Year">
+                </mat-form-field>
+            </div>
+            <div fxFlex="1 1 200px">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="{{ 'MoviesFavorites.components.MovieFavoritesList.Fields.IMDB' | translate }}" readonly [value]="favorite.metadata.imdbID">
+                </mat-form-field>
+            </div>
+            <div fxFlex="1 1 100px">
+                <button class="full-width" type="button" mat-raised-button color="primary" (click)="onView(favorite.id)">
+                    {{ 'MoviesFavorites.components.MovieFavoritesList.Controls.View' | translate }}
+                </button>
+            </div>
+            <div fxFlex="1 1 100px">
+                <button class="full-width" type="button" mat-raised-button color="warn" (click)="onRemove(favorite.id)">
+                    {{ 'MoviesFavorites.components.MovieFavoritesList.Controls.Remove' | translate }}
+                </button>
+            </div>
+        </div>
+    </mat-list-item>
+</mat-list>

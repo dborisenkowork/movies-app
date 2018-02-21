@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 
 import {MoviesRESTApiConfigurationService} from './internal/MoviesRESTApiConfiguration.service';
 
 @NgModule({
     imports: [
-        HttpClient,
+        HttpClientModule,
     ],
     providers: [
         MoviesRESTApiConfigurationService,

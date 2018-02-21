@@ -7,7 +7,7 @@ import {MoviesRESTApiConfigurationService} from '../internal/MoviesRESTApiConfig
 
 import {MockOMDBApiService} from './MockOMDBApi.service';
 
-import {OMDB_SEARCH_FIXTURE} from '../fixtures/omdb-search.fixture';
+import {OMDB_SEARCH_FIXTURE, omdbSearchFixture} from '../fixtures/omdb-search.fixture';
 import {OMDBApiSearchResponseError} from '../services/OMDBApi.service';
 
 describe('MoviesRESTApi/services-mock/MockOMDBApi', () => {
@@ -26,36 +26,7 @@ describe('MoviesRESTApi/services-mock/MockOMDBApi', () => {
                 },
                 {
                     provide: OMDB_SEARCH_FIXTURE,
-                    useValue: [
-                        {
-                            Title: 'Foo',
-                            Year: '2018',
-                            imdbID: 'demo-1',
-                            Type: 'movie',
-                            Poster: 'N/A',
-                        },
-                        {
-                            Title: 'Bar',
-                            Year: '2014',
-                            imdbID: 'demo-2',
-                            Type: 'movie',
-                            Poster: 'N/A',
-                        },
-                        {
-                            Title: 'Baz',
-                            Year: '2018',
-                            imdbID: 'demo-3',
-                            Type: 'movie',
-                            Poster: 'N/A',
-                        },
-                        {
-                            Title: 'Foo Baz',
-                            Year: '2008',
-                            imdbID: 'demo-4',
-                            Type: 'movie',
-                            Poster: 'N/A',
-                        },
-                    ],
+                    useValue: omdbSearchFixture,
                 },
                 MoviesRESTApiConfigurationService,
                 MockOMDBApiService,

@@ -10,6 +10,8 @@ import {TranslateModule, TranslateService} from '@ngx-translate/core';
 import {environment} from '../../environments/environment.config';
 import {MoviesAppRouting} from './configs/MoviesAppRouting.config';
 
+import {MoviesFavoritesModule} from '../MoviesFavorites/MoviesFavorites.module';
+
 import {en_GB} from './translations/en_GB';
 
 import {MOVIES_REST_API_MODULE_CONFIG} from '../MoviesRESTApi/models/MoviesRESTApiEnvironmentConfiguration.model';
@@ -29,6 +31,8 @@ import {AppRootComponent} from './components/AppRoot/AppRoot.component';
         RouterModule.forRoot(MoviesAppRouting.routes, {
             enableTracing: environment.angular.enableRouterTracing,
         }),
+
+        MoviesFavoritesModule,
     ],
     declarations: [
         AppRootComponent,

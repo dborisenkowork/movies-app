@@ -1,0 +1,8 @@
+<mat-form-field class="full-width">
+    <input type="text" matInput [formControl]="textInput" autocomplete="off" [matAutocomplete]="auto" placeholder="{{ 'MoviesFavorites.components.SearchForMoviesInput.Placeholder' | translate }}">
+</mat-form-field>
+<mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
+    <mat-option *ngFor="let option of state.options" [value]="option">
+        {{ option.Title }}
+    </mat-option>
+</mat-autocomplete>
