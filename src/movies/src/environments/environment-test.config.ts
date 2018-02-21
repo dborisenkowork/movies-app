@@ -2,7 +2,7 @@ import {ENVIRONMENT, EnvironmentConfiguration} from './environments';
 
 // noinspection JSUnusedGlobalSymbols
 export const environment: EnvironmentConfiguration = {
-    env: ENVIRONMENT.Mock,
+    env: ENVIRONMENT.Test,
     angular: {
         enableProductionMode: false,
         enableRouterTracing: false,

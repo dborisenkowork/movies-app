@@ -12,7 +12,7 @@ describe('MoviesApp/components/AppRoot', () => {
            schemas: [
                NO_ERRORS_SCHEMA,
            ],
-       });
+       }).compileComponents();
    });
 
    it('component exists', () => {

@@ -14,7 +14,7 @@
       "index": "./modules/MoviesApp/entry-point/index.html",
       "main": "./modules/MoviesApp/entry-point/main.ts",
       "polyfills": "./modules/MoviesApp/entry-point/polyfills.ts",
-      "test": "./modules/MoviesApp/entry-point/test.ts",
+      "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "movies",
@@ -25,7 +25,8 @@
       "environmentSource": "environments/environment.config.ts",
       "environments": {
         "dev": "environments/environment.config.ts",
-        "mock": "environments/environment-mock.config.ts"
+        "mock": "environments/environment-mock.config.ts",
+        "test": "environments/environment-test.config.ts"
       }
     }
   ],

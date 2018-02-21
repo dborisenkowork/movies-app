@@ -4,7 +4,7 @@ export const environment: EnvironmentConfiguration = {
     env: ENVIRONMENT.Dev,
     angular: {
         enableProductionMode: false,
-        enableRouterDebug: false,
+        enableRouterTracing: false,
     },
     modules: {
         MoviesApp: {},

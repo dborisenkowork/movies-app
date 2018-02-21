@@ -4,7 +4,8 @@ import {MoviesRESTApiEnvironmentConfiguration} from '../modules/MoviesRESTApi/mo
 export enum ENVIRONMENT
 {
     Dev = <any>'dev',
-    Mock = <any>'prod',
+    Mock = <any>'mock',
+    Test = <any>'test',
 }
 
 export interface EnvironmentConfiguration
@@ -12,7 +13,7 @@ export interface EnvironmentConfiguration
     env: ENVIRONMENT;
     angular: {
         enableProductionMode: boolean;
-        enableRouterDebug: boolean;
+        enableRouterTracing: boolean;
     };
     modules: {
         MoviesApp: MoviesAppEnvironmentConfiguration;
