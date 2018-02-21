@@ -1,6 +1,8 @@
 import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 
+import {TranslateModule} from '@ngx-translate/core';
+
 import {MovieFavoritesListComponent} from './MovieFavoritesList.component';
 
 describe('MoviesFavorites/components/MovieFavoritesList', () => {
@@ -11,6 +13,9 @@ describe('MoviesFavorites/components/MovieFavoritesList', () => {
             ],
             schemas: [
                 NO_ERRORS_SCHEMA,
+            ],
+            imports: [
+                TranslateModule,
             ],
         }).compileComponents();
     });

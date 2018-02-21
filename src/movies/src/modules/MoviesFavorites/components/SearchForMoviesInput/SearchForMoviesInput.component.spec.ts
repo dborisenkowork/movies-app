@@ -1,7 +1,13 @@
 import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 
-import {MatAutocompleteModule, MatCommonModule, MatInputModule} from '@angular/material';
+import {TranslateModule, TranslateService} from '@ngx-translate/core';
+
+import {Observable} from 'rxjs/Observable';
+
+import 'rxjs/add/observable/of';
+
+import {MatAutocompleteModule, MatInputModule} from '@angular/material';
 
 import {SearchForMoviesInputComponent} from './SearchForMoviesInput.component';
 
@@ -9,6 +15,14 @@ import {OMDBApiService} from '../../../MoviesRESTApi/services/OMDBApi.service';
 import {MockOMDBApiService} from '../../../MoviesRESTApi/services-mock/MockOMDBApi.service';
 
 import {OMDB_SEARCH_FIXTURE, omdbSearchFixture} from '../../../MoviesRESTApi/fixtures/omdb-search.fixture';
+
+class TranslateServiceStub
+{
+    // noinspection JSUnusedGlobalSymbols
+    public get(key: any): any {
+        Observable.of(key);
+    }
+}
 
 describe('MoviesFavorites/components/SearchForMoviesInput', () => {
     beforeEach(() => {
@@ -20,12 +34,14 @@ describe('MoviesFavorites/components/SearchForMoviesInput', () => {
                 NO_ERRORS_SCHEMA,
             ],
             providers: [
-                MatCommonModule,
-                MatInputModule,
-                MatAutocompleteModule,
-
                 { provide: OMDBApiService, useClass: MockOMDBApiService },
                 { provide: OMDB_SEARCH_FIXTURE, useValue: omdbSearchFixture },
+                { provide: TranslateService, useValue: TranslateServiceStub },
+            ],
+            imports: [
+                TranslateModule,
+                MatAutocompleteModule,
+                MatInputModule,
             ],
         });
     });
